@@ -3,3 +3,5 @@
    `scrapy crawl -s DEPTH_LIMIT=1 wiki_entities`
    
    This outputs a file `entities.json` which contains JSON objects for each entity found within the crawl.
+   
+   The code for the crawler is located in `dse203_final/wiki_crawler/wiki_crawler/spiders` and is called wiki_spider.py
