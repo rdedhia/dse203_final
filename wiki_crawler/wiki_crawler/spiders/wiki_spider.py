@@ -19,6 +19,10 @@ def fix_relation(relation):
         relation = "founded_by"
     if relation == "original_author(s)":
         relation = "founded_by"
+    if relation =='founder(s)':
+        relation = 'founded_by'
+    if relation == 'type_of_business':
+        relation = 'type'
     return relation
 
 
@@ -28,16 +32,31 @@ class WikiSpider(scrapy.Spider):
     # start_urls = ['https://en.wikipedia.org/wiki/Summify']
     start_urls = ['https://en.wikipedia.org/wiki/Facebook', 'https://en.wikipedia.org/wiki/Twitter', 'https://en.wikipedia.org/wiki/Snapchat', 
     'https://en.wikipedia.org/wiki/Instagram', 'https://en.wikipedia.org/wiki/Periscope_(app)', 'https://en.wikipedia.org/wiki/Vine_(service)', 
-    'https://en.wikipedia.org/wiki/Summify']
+    'https://en.wikipedia.org/wiki/Summify', "https://en.wikipedia.org/wiki/Pinterest", "https://en.wikipedia.org/wiki/Reddit", "https://en.wikipedia.org/wiki/WeChat"]
 
-    dont_crawl = ['https://en.wikipedia.org/wiki/United_States_dollar', "https://en.wikipedia.org/wiki/Proprietary_software"]
+
     allowed_domains=['en.wikipedia.org']
 
 
-
-
     def parse(self, response):
-        dont_crawl = ['https://en.wikipedia.org/wiki/United_States_dollar', "https://en.wikipedia.org/wiki/Proprietary_software"]
+        type_dict = {
+            "businessperson": "person",
+            "Public company": "company",
+            "software": "company",
+            "Privately held company": "company",
+            "organisation": "company",
+            "Subsidiary": "company",
+            "Consolidated city-county": "location",
+            "city": "location",
+            "City": "location",
+            "City (California)": "location",
+            "List of cities in British Columbia": "location",
+            "language": "programming_language",
+            "Thing": "programming_language"
+        }
+
+        dont_crawl = ['https://en.wikipedia.org/wiki/United_States_dollar', "https://en.wikipedia.org/wiki/Proprietary_software", "https://en.wikipedia.org/wiki/New_York_Stock_Exchange",
+        "https://en.wikipedia.org/wiki/S%26P_500", "https://en.wikipedia.org/wiki/S%26P_100", "https://en.wikipedia.org/wiki/NASDAQ"]
         if response.url not in dont_crawl:
             entity_html = response.xpath('//*[@id="firstHeading"]').getall()[0]
             entity_soup = BeautifulSoup(entity_html, 'lxml')
@@ -51,6 +70,8 @@ class WikiSpider(scrapy.Spider):
             entity_type_list = dbn_soup.find_all('div', {'class': 'page-resource-uri'})[0]
             entity_type = entity_type_list.find_all('a')[0].get_text()
 
+            if type_dict.get(entity_type):
+                entity_type = type_dict[entity_type]
             out_d = {}
             out_d["name"] = entity_name
             out_d["url"] = response.url
@@ -91,9 +112,9 @@ class WikiSpider(scrapy.Spider):
                                 if values.a:
                                     next_page = values.a['href']
                                     yield response.follow(next_page, callback=self.parse)
-            # logger.info(json.dumps(out_d,indent=4))
+            logger.info(json.dumps(out_d,indent=4))
 
-            if len(out_d.keys()) > 3:
+            if len(out_d.keys()) > 2:
                 with open('entities.json', 'a') as outfile:
                     outfile.write(json.dumps(out_d) + '\n')
                 yield out_d
