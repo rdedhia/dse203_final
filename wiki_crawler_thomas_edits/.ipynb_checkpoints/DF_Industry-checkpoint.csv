@@ -1,0 +1,19 @@
+ID,name,entity_type
+2,advertising,industry
+13,client,industry
+24,hardware,industry
+22,instant messaging,industry
+18,internet,industry
+15,media,industry
+17,media aggregation,industry
+11,multimedia,industry
+19,news,industry
+3,news aggregation,industry
+8,photo sharing,industry
+23,social media,industry
+6,social networking service,industry
+16,social news,industry
+10,video chat,industry
+7,video sharing,industry
+5,video streaming,industry
+21,virtual reality,industry
