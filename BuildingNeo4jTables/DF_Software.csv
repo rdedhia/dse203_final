@@ -1,0 +1,14 @@
+ID,name,website,stable_release,paradigm,developer,first_appeared,typing_discipline
+1,JavaScript,Mozilla,"ECMAScript 2019[3]
+   /    June_2019; 5_months ago_(2019-06)","['Multi-paradigm', 'event-driven', '[1]', 'functional', 'imperative', 'object-oriented', 'prototype-based']","['Netscape Communications Corporation', 'Mozilla Foundation', 'Ecma International']","December_4, 1995; 23 years ago_(1995-12-04)[2]","['Dynamic', 'duck']"
+2,Scala,www.scala-lang.org,"2.13.1
+   /    11_June 2019; 5 months ago_(2019-06-11)[1]","['Multi-paradigm', 'concurrent', 'functional', 'imperative', 'object-oriented']",Programming Methods Laboratory of École Polytechnique Fédérale de Lausanne,,"['Inferred', 'static', 'strong', 'structural']"
+3,Ruby,www.ruby-lang.org,"['[1]', '[±]']","['Multi-paradigm', 'functional', 'imperative', 'object-oriented', 'reflective']",,,"['Duck', 'dynamic', 'strong']"
+4,Java,oracle.com/java/,,"['Multi-paradigm', 'generic', 'object-oriented', 'class-based', 'imperative', 'reflective']",Sun Microsystems,"May_23, 1995; 24 years ago_(1995-05-23)[1]","['Static, strong, safe', 'nominative', 'manifest']"
+5,React,reactjs.org,"16.12.0
+   / November_14, 2019; 4 days ago_(2019-11-14)[2]",,,,
+6,Python,www.python.org,"['[2]', '[3]']","['Multi-paradigm', 'functional', 'imperative', 'object-oriented', 'reflective']",Python Software Foundation,1990; 29_years ago_(1990)[1],"['Duck', 'dynamic', 'gradual', '[4]']"
+7,Go,,,,,,
+8,server-side,,,,,,
+9,Rust,,,,,,
+10,Erlang,,,,,,

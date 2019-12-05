@@ -1,0 +1,19 @@
+CompanyID,PersonsID,role
+1,16,Chairman and CEO
+1,3,COO
+1,18,CFO
+1,2,CTO
+8,10,co-founder and CEO
+8,29,COO
+8,30,CTO
+10,7,Executive Chairman
+10,9,CEO
+10,34,(CFO)
+10,35,(CFO)
+10,34,CFO
+10,35,CFO
+12,40,"Vice President, VR/AR"
+14,43,"Chairman, CEO"
+14,48,"Chairman, CEO"
+14,49,President
+15,50,Chairman
