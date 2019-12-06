@@ -4,7 +4,7 @@ import json
 import re
 
 
-urls = [# "https://en.wikipedia.org/wiki/Twitter", 
+urls = ["https://en.wikipedia.org/wiki/Twitter", 
 		"https://en.wikipedia.org/wiki/Facebook",
 		"https://en.wikipedia.org/wiki/Vine_(service)",
 		'https://en.wikipedia.org/wiki/Snapchat', 
@@ -35,8 +35,6 @@ for u in urls:
 
 
 	out_d["title"] = title
-	# out_d["abstract"] = cleaned_abstract
-	# out_d["text"] = cleaned_text
 	out_d["text"] = cleaned_abstract + cleaned_text
 	with open('{}.json'.format(title), 'w') as outfile:
 		outfile.write(json.dumps(out_d))
