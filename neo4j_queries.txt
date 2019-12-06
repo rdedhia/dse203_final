@@ -1,0 +1,18 @@
+# Match companies who are located in California
+MATCH (n) WHERE EXISTS(n.headquarters) and (n.headquarters CONTAINS "California" ) RETURN n.name AS name, n.headquarters AS headquarters
+
+# Match companies that have won an award
+MATCH (n) WHERE EXISTS(n.awards)  RETURN n.name AS name, n.awards AS award
+
+# Find company with the most amount of products and their counts
+MATCH (c:Company)
+WITH c, SIZE(()-[:PRODUCT_OF]->(c)) as ProductCount
+ORDER BY ProductCount DESC LIMIT 10
+MATCH (a)-[:PRODUCT_OF]->(b)
+RETURN DISTINCT c.name, ProductCount
+
+# Match People that are key people of companies but not founders, return their role
+MATCH (p:Person)-[k:KEY_PERSON_OF]-(c:Company)
+WHERE NOT (p)-[:FOUNDED_BY]-(c)
+return DISTINCT p.name as name, c.name as company, k.role as role
+
