@@ -16,6 +16,9 @@ MATCH (p:Person)-[k:KEY_PERSON_OF]-(c:Company)
 WHERE NOT (p)-[:FOUNDED_BY]-(c)
 return DISTINCT p.name as name, c.name as company, k.role as role
 
+# NAICS Codes
+match (c:Company)-[:NAICS_INDUSTRY]-(n:NAICS_Codes) return c,n
+
 # Graph to show competitiors and acquisitions
 match (c:Company)-[r:COMPETES_WITH|:SUBSIDIARY_OF]-(oc:Company) return c,r,oc
 
