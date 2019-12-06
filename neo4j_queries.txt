@@ -16,3 +16,19 @@ MATCH (p:Person)-[k:KEY_PERSON_OF]-(c:Company)
 WHERE NOT (p)-[:FOUNDED_BY]-(c)
 return DISTINCT p.name as name, c.name as company, k.role as role
 
+# Graph to show competitiors and acquisitions
+match (c:Company)-[r:COMPETES_WITH|:SUBSIDIARY_OF]-(oc:Company) return c,r,oc
+
+# Graph which shows relationship between companies, people related to those companies, and their universities
+match (c:Company)-[r:FOUNDED_BY|:KEY_PERSON_OF]-(p:Person)-[a:ALMA_MATER_OF]-(u:University) return c,r,p,a,u
+
+# Two tables which aren't very complex, but just highlight the main properties we have for companies and people
+match (c:Company) return c.name, c.revenue, c.website, c.headquarters, c.type, c.awards, c.banned_in, c.number_of_employees
+match (p:Person) return p.name, p.occupation, p.residence, p.political_party
+
+# Graph which shows relationship between software, the companies they are used by, and the people who designed them
+match (c:Company)-[w:WRITTEN_IN]-(s:Software)-[d:DESIGNED_BY]-(p:Person) return c,w,s,d,p
+
+# Graph and table (respectively) showing companies and their industries, and the counts across industries
+match (c:Company)-[i:INDUSTRY_OF]-(in:Industry) return c,i,in
+match (c:Company)-[:INDUSTRY_OF]-(in:Industry) return in.name, count(c) order by count(c) desc
